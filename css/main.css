@@ -158,6 +158,21 @@ h1, .h1 {
     font-size: 1.8rem; /* Ajusta este valor según sea necesario */
     line-height: 1.2; 
   }
+
+  .home-content h2 .line-item {
+    display: block;
+    text-align: center;
+  }
+
+  .small-screen-break {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .small-screen-break {
+    display: none;
+  }
 }
 
 h2, .h2 {
