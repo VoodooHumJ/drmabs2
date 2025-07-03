@@ -4237,6 +4237,11 @@ footer a {
   transform: translateX(5px);
 }
 
+.highlight-text {
+  color: #55c6f5;
+  font-style: italic;
+}
+
 /* Imagen con texto superpuesto
  * -------------------------------------------------- */
 .s-imagen-destacada {
