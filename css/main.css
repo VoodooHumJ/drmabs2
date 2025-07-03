@@ -2136,6 +2136,17 @@ body.menu-is-open {
   display: table;
 }
 
+/* Clase para ocultar separadores verticales en pantallas pequeñas */
+.separator-pipe {
+  display: inline;
+}
+
+@media only screen and (max-width: 600px) {
+  .separator-pipe {
+    display: none;
+  }
+}
+
 .s-home::before {
   display: block;
   content: "";
