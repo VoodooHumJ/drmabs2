@@ -162,6 +162,7 @@ h1, .h1 {
   .home-content h2 .line-item {
     display: block;
     text-align: center;
+    line-height: 10px;
   }
 
   .small-screen-break {
