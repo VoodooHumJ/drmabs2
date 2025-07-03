@@ -192,7 +192,7 @@ p.lead {
   font-size: 2.4rem;
   line-height: 1.625;
   margin-bottom: 3.6rem;
-  color: #9c9c9c;
+  color: #dfd8d8;
 }
 
 @media only screen and (max-width:1200px) {
@@ -4288,45 +4288,61 @@ footer a {
 /* Imagen con texto superpuesto
  * -------------------------------------------------- */
 .s-imagen-destacada {
-  padding: 0;
-  position: relative;
-  background-color: #000000;
-}
-
-.imagen-destacada-container {
-  position: relative;
   width: 100%;
   height: 500px;
-  overflow: hidden;
+  background-color: transparent;
+  position: relative;
+  display: table;
+  padding: 0;
 }
 
-.imagen-destacada-bg {
+.s-imagen-destacada::before {
+  display: block;
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  opacity: 0.7;
-  transition: transform 0.5s ease;
+  background-color: #111111;
+  opacity: .7;
+  z-index: 2;
 }
 
-.imagen-destacada-container:hover .imagen-destacada-bg {
-  transform: scale(1.05);
+.s-imagen-destacada .grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  bottom: 0;
+  right: 0;
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  opacity: .5;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translate3d(-50%, 0, 0);
+  z-index: 3;
+}
+
+.s-imagen-destacada .grid-overlay > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/grid.png);
+  opacity: 0.4;
 }
 
 .imagen-destacada-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: table-cell;
+  vertical-align: middle;
   text-align: center;
-  width: 80%;
-  max-width: 800px;
-  z-index: 2;
-  padding: 3rem;
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  padding: 0 15%;
 }
 
 .imagen-destacada-titulo {
@@ -4344,7 +4360,7 @@ footer a {
 }
 
 @media only screen and (max-width: 800px) {
-  .imagen-destacada-container {
+  .s-imagen-destacada {
     height: 400px;
   }
   
@@ -4358,7 +4374,7 @@ footer a {
 }
 
 @media only screen and (max-width: 600px) {
-  .imagen-destacada-container {
+  .s-imagen-destacada {
     height: 350px;
   }
   
@@ -4371,8 +4387,7 @@ footer a {
   }
   
   .imagen-destacada-content {
-    width: 90%;
-    padding: 2rem;
+    padding: 0 10%;
   }
 }
 
