@@ -557,7 +557,7 @@ form,
 
 #loader > div {
   content: "";
-  background: #FFFFFF;
+  background: #55c5fd;
   width: 6px;
   height: 6px;
   position: absolute;
@@ -2240,14 +2240,14 @@ body.menu-is-open {
 }
 
 .home-content__button .btn:not(.btn--primary) {
-  background-color: #214b97;
+  background-color: #55c6f5;
   
   color: #FFFFFF;
 }
 
 .home-content__button .btn:not(.btn--primary):hover,
 .home-content__button .btn:not(.btn--primary):focus {
-  background-color: #23272b;
+  background-color: #1d3782;
   
 }
 
@@ -3749,7 +3749,7 @@ html.no-csstransitions .home-content__main {
  *
  * ------------------------------------------------------------------- */
 footer {
-  padding-top: 2rem;
+  padding-top: 3rem;
   padding-bottom: 2rem;
   color: rgba(255, 255, 255, 0.6);
   background-color: #121212;
@@ -3997,6 +3997,285 @@ footer a {
   transform: scale(1.05);
 }
 
+/* Footer Deportivo
+ * -------------------------------------------------- */
+.footer-deportivo {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05)
+  color: #ffffff;
+  padding: 12rem 0 0;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/icon.png');
+  background-size: 300px;
+  background-repeat: repeat;
+  opacity: 0.01;
+  z-index: 1;
+}
+
+.footer-content {
+  position: relative;
+  z-index: 2;
+}
+
+.footer-logo {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.footer-logo img {
+  width: 80px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover img {
+  transform: scale(1.1);
+}
+
+.footer-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.footer-tagline {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #fdbb2d;
+}
+
+.footer-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.footer-heading:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 4px;
+  background: #fdbb2d;
+  border-radius: 2px;
+}
+
+.footer-contact p {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.footer-contact p i {
+  margin-right: 1rem;
+  color: #1d3782;
+  font-size: 1.8rem;
+  width: 20px;
+  text-align: center;
+}
+
+.footer-social-list {
+  display: flex;
+  margin-bottom: 2.5rem;
+}
+
+.footer-social-list li {
+  margin-right: 1.5rem;
+}
+
+.footer-social-list a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 2rem;
+  transition: all 0.3s ease;
+}
+
+.footer-social-list a:hover {
+  background: #55;
+  color: #1a2a6c;
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.footer-cta .btn {
+  background: #fdbb2d;
+  color: #1a2a6c;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 1.5rem 3rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.footer-cta .btn:hover {
+  background: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.footer-bottom {
+  margin-top: 4rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.footer-copyright {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  font-size: 1.3rem;
+  display: block;
+}
+
+.footer-links a {
+  color: #ffffff;
+  margin: 0 1rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fdbb2d;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments for footer */
+@media only screen and (max-width: 1200px) {
+  .footer-deportivo {
+    padding: 5rem 0 0;
+  }
+  
+  .footer-title {
+    font-size: 2rem;
+  }
+  
+  .footer-tagline {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .footer-deportivo {
+    padding: 4rem 0 0;
+  }
+  
+  .footer-heading {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-contact p {
+    font-size: 1.4rem;
+  }
+  
+  .footer-social-list a {
+    width: 45px;
+    height: 45px;
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .col-four.footer-info,
+  .col-four.footer-contact,
+  .col-four.footer-social {
+    width: 100%;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .footer-heading:after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .footer-contact p {
+    justify-content: center;
+  }
+  
+  .footer-social-list {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .footer-deportivo {
+    padding: 3rem 0 0;
+  }
+  
+  .footer-title {
+    font-size: 1.8rem;
+  }
+  
+  .footer-tagline {
+    font-size: 1.2rem;
+  }
+  
+  .footer-heading {
+    font-size: 1.5rem;
+  }
+  
+  .footer-contact p {
+    font-size: 1.3rem;
+  }
+  
+  .footer-social-list a {
+    width: 40px;
+    height: 40px;
+    font-size: 1.6rem;
+  }
+  
+  .footer-cta .btn {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.4rem;
+  }
+  
+  .footer-copyright {
+    font-size: 1.2rem;
+  }
+  
+  .footer-links {
+    font-size: 1.1rem;
+  }
+  
+  .footer-links a {
+    margin: 0 0.5rem;
+  }
+}
+
 .arrow {
   font-size: 18px;
   transition: transform 0.2s ease;
@@ -4004,6 +4283,330 @@ footer a {
 
 .next-button:hover .arrow {
   transform: translateX(5px);
+}
+
+/* Imagen con texto superpuesto
+ * -------------------------------------------------- */
+.s-imagen-destacada {
+  padding: 0;
+  position: relative;
+  background-color: #000000;
+}
+
+.imagen-destacada-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+}
+
+.imagen-destacada-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  transition: transform 0.5s ease;
+}
+
+.imagen-destacada-container:hover .imagen-destacada-bg {
+  transform: scale(1.05);
+}
+
+.imagen-destacada-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 80%;
+  max-width: 800px;
+  z-index: 2;
+  padding: 3rem;
+}
+
+.imagen-destacada-titulo {
+  color: #ffffff;
+  font-size: 4.2rem;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.imagen-destacada-texto {
+  color: #ffffff;
+  font-size: 2.2rem;
+  margin-bottom: 3rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+@media only screen and (max-width: 800px) {
+  .imagen-destacada-container {
+    height: 400px;
+  }
+  
+  .imagen-destacada-titulo {
+    font-size: 3.6rem;
+  }
+  
+  .imagen-destacada-texto {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .imagen-destacada-container {
+    height: 350px;
+  }
+  
+  .imagen-destacada-titulo {
+    font-size: 3rem;
+  }
+  
+  .imagen-destacada-texto {
+    font-size: 1.6rem;
+  }
+  
+  .imagen-destacada-content {
+    width: 90%;
+    padding: 2rem;
+  }
+}
+
+/* Estilos para la sección Acerca del Dr. Bolaños con imagen
+ * -------------------------------------------------- */
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.about-text {
+  padding-right: 2rem;
+}
+
+.about-image {
+  text-align: center;
+}
+
+.doctor-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.doctor-image:hover {
+  transform: scale(1.02);
+}
+
+@media only screen and (max-width: 900px) {
+  .about-content {
+    flex-direction: column;
+  }
+  
+  .about-text, .about-image {
+    width: 100%;
+  }
+  
+  .about-text {
+    padding-right: 0;
+    margin-bottom: 3rem;
+  }
+  
+  .doctor-image {
+    max-width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .doctor-image {
+    max-width: 100%;
+  }
+}
+
+/* Botón flotante de WhatsApp
+ * -------------------------------------------------- */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  background-color: #55c6f5;
+  transform: scale(1.1);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-float i {
+  margin-top: 0;
+}
+
+/* Animación de pulso para el botón de WhatsApp */
+.whatsapp-float:before {
+  content: "";
+  position: absolute;
+  border: 1px solid #25d366;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  box-sizing: border-box;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Ajustes responsive para el botón de WhatsApp */
+@media only screen and (max-width: 767px) {
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 25px;
+  }
+}
+
+/* Cuadro de diálogo flotante
+ * -------------------------------------------------- */
+.chat-dialog {
+  position: fixed;
+  bottom: 110px;
+  right: 40px;
+  width: 300px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  overflow: hidden;
+  display: none;
+}
+
+.chat-dialog.active {
+  display: block;
+}
+
+.chat-header {
+  background: linear-gradient(135deg, #06224c 0%, #0a3a7e 100%);
+  color: white;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header .close-chat {
+  cursor: pointer;
+  font-size: 1.8rem;
+  color: white;
+  transition: color 0.2s ease;
+}
+
+.chat-header .close-chat:hover {
+  color: #f0f0f0;
+}
+
+.chat-body {
+  padding: 15px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  font-size: 1.4rem;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #eee;
+}
+
+.chat-input textarea {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 1.4rem;
+  resize: none;
+  outline: none;
+  font-family: inherit;
+}
+
+.chat-input textarea:focus {
+  border-color: #06224c;
+}
+
+.chat-input button {
+  background-color: #06224c;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: background-color 0.3s ease;
+}
+
+.chat-input button:hover {
+  background-color: #0a3a7e;
+}
+
+@media only screen and (max-width: 767px) {
+  .chat-dialog {
+    width: 280px;
+    bottom: 80px;
+    right: 20px;
+  }
+  
+  .chat-header {
+    padding: 12px;
+    font-size: 1.4rem;
+  }
+  
+  .chat-body {
+    max-height: 180px;
+  }
+  
+  .chat-input textarea, 
+  .chat-input button {
+    font-size: 1.3rem;
+  }
 }
 
 

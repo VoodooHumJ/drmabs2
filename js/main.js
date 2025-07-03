@@ -240,6 +240,29 @@
     };
 
 
+   /* Footer Animation on Scroll
+    * ------------------------------------------------------ */
+    var ssFooterAnimation = function() {
+        var $footer = $('.footer-deportivo');
+        var $services = $('#services');
+        
+        if ($services.length && $footer.length) {
+            $WIN.on('scroll', function() {
+                var servicesBottom = $services.offset().top + $services.outerHeight();
+                var windowBottom = $WIN.scrollTop() + $WIN.height();
+                
+                if (windowBottom > servicesBottom) {
+                    $footer.addClass('footer-visible');
+                } else {
+                    $footer.removeClass('footer-visible');
+                }
+            });
+        }
+    };
+    
+   /* Chat Dialog - Moved to chat.js
+    * ------------------------------------------------------ */
+
    /* Initialize
     * ------------------------------------------------------ */
     (function clInit() {
@@ -253,6 +276,8 @@
         ssSmoothScroll();
         ssAlertBoxes();
         ssAOS();
+        ssFooterAnimation();
+        // ssChatDialog() - Moved to chat.js
 
     })();
     
