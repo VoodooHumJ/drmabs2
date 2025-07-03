@@ -2727,6 +2727,10 @@ celular
     font-size: 2rem;
   }
 
+  .home-content p {
+    visibility: hidden;
+  }
+
   .home-content__main {
     padding: 0 25px;
   }
