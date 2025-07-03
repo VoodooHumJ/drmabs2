@@ -1571,7 +1571,7 @@ body.menu-is-open {
 .grid-overlay2 > div,
 .grid-overlay2::before,
 .grid-overlay2::after {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(223, 13, 13, 0.1);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1762,6 +1762,7 @@ body.menu-is-open {
   height: 100%;
   width: 50%;
   background: #0C0C0C;
+  opacity: .98;
   color: rgba(255, 255, 255, 0.671);
   overflow-y: auto;
   overflow-x: hidden;
@@ -2214,6 +2215,8 @@ body.menu-is-open {
   overflow: hidden;
   position: relative;
   z-index: 4;
+   
+  
 }
 
 .home-content h1 {
@@ -4349,6 +4352,7 @@ footer a {
   position: relative;
   display: table;
   padding: 0;
+  
 }
 
 .s-imagen-destacada::before {
