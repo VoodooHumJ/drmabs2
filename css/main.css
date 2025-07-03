@@ -151,14 +151,13 @@ h1, .h1 {
 @media only screen and (max-width:600px) {
   h1, .h1 {
     font-size: 2rem;
-    letter-spacing: -.07rem;
-    letter-spacing: 0.2rem;
+    letter-spacing: .07rem;
+    
   }
 
   .home-content h2 {
     font-size: 1.8rem; /* Ajusta este valor según sea necesario */
     line-height: 1.2; 
-    letter-spacing: 0.2rem;
   }
 
   .home-content h2 .line-item {
