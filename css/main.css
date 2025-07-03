@@ -2696,7 +2696,7 @@ html.no-csstransitions .home-content__main {
 
 @media only screen and (max-width:500px) {
   .home-content h1 {
-    font-size: 6rem;
+    font-size: 4rem;
   }
 
   .home-content h3 {
@@ -2740,7 +2740,7 @@ html.no-csstransitions .home-content__main {
 
 @media only screen and (max-width:350px) {
   .home-content h1 {
-    font-size: 6.2rem;
+    font-size: 4rem;
   }
 
 }
