@@ -150,7 +150,7 @@ h1, .h1 {
 
 @media only screen and (max-width:600px) {
   h1, .h1 {
-    font-size: 3.3rem;
+    font-size: 2rem;
     letter-spacing: -.07rem;
   }
 }
@@ -1727,8 +1727,8 @@ body.menu-is-open {
 }
 
 .header-logo img {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
 }
 
 /* ------------------------------------------------------------------- 
@@ -1969,7 +1969,7 @@ body.menu-is-open {
 
 .header-menu-icon {
   display: block;
-  width: 26px;
+  width: 40px;
   height: 2px;
   margin-top: -1px;
   right: auto;
