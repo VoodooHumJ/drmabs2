@@ -1458,7 +1458,7 @@ body.menu-is-open {
   line-height: 1.333;
   text-transform: uppercase;
   letter-spacing: .25rem;
-  color: #214b97;
+  color: #55c6f5;
   margin-top: 8rem;
   margin-bottom: 3rem;
   position: relative;
@@ -1809,7 +1809,7 @@ body.menu-is-open {
   display: block;
   height: 1px;
   width: 110px;
-  background-color: #214b97;
+  background-color: #55c6f5;
   position: absolute;
   top: 50%;
   right: 0;
@@ -1867,7 +1867,7 @@ body.menu-is-open {
 }
 
 .header-nav__list a:hover::before {
-  color: #214b97;
+  color: #55c6f5;
 }
 
 .header-nav__list .current a::before {
@@ -1888,7 +1888,7 @@ body.menu-is-open {
 }
 
 .header-nav__social li a {
-  color: rgba(255, 255, 255, 0.705);
+  color: #55c6f5;
 }
 
 .header-nav__social li a:hover,
@@ -1919,7 +1919,7 @@ body.menu-is-open {
   display: block;
   height: 2px;
   width: 16px;
-  background-color: #FFFFFF;
+  background-color: #55c6f5;
   position: absolute;
   top: 50%;
   left: 7px;
