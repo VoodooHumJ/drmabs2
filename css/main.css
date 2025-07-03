@@ -1800,7 +1800,7 @@ body.menu-is-open {
   margin-bottom: 7.2rem;
   margin-top: 1.2rem;
   padding-right: 140px;
-  color: #214b97;
+  color: #55c5fd;
   position: relative;
 }
 
@@ -1989,7 +1989,7 @@ body.menu-is-open {
 
 .header-menu-icon {
   display: block;
-  width: 40px;
+  width: 20px;
   height: 2px;
   margin-top: -1px;
   right: auto;
