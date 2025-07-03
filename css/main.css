@@ -158,12 +158,16 @@ h1, .h1 {
   .home-content h2 {
     font-size: 1.8rem; /* Ajusta este valor según sea necesario */
     line-height: 1.2; 
+    letter-spacing: 0.1rem; /* Increased letter spacing */
   }
 
   .home-content h2 .line-item {
+    font-size: 1.8rem; /* Ajusta este valor según sea necesario */
+    line-height: .1;
     display: block;
     text-align: center;
-    line-height: 10px;
+    
+    
   }
 
   .small-screen-break {
