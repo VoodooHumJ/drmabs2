@@ -153,6 +153,11 @@ h1, .h1 {
     font-size: 2rem;
     letter-spacing: -.07rem;
   }
+
+  .home-content h2 {
+    font-size: 1.8rem; /* Ajusta este valor según sea necesario */
+    line-height: 1.2; 
+  }
 }
 
 h2, .h2 {
@@ -2739,7 +2744,7 @@ celular
   }
 
   .home-content p {
-    visibility: hidden;
+    display: hidden;
   }
 
   .home-content__main {
@@ -2764,9 +2769,8 @@ celular
     margin-top: 3.6rem;
   }
   .header-menu-icon {
-  
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
   }
 
 }
