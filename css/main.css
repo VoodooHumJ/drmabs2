@@ -213,6 +213,7 @@ p.lead {
   line-height: 1.625;
   margin-bottom: 3.6rem;
   color: #dfd8d8;
+  font-style: italic;
 }
 
 @media only screen and (max-width:1200px) {
@@ -1348,11 +1349,11 @@ body.menu-is-open {
 .subhead {
   font-family: "Nunito", sans-serif;
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   line-height: 1.333;
   text-transform: uppercase;
   letter-spacing: .25rem;
-  color: #55c6f5;
+  color: #1d3782;
   margin-top: 8rem;
   margin-bottom: 3rem;
   position: relative;
