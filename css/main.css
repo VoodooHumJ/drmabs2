@@ -62,6 +62,10 @@ html {
   font-size: 10px;
 }
 
+html {
+      scroll-behavior: smooth;
+    }
+
 @media only screen and (max-width:400px) {
   html {
     font-size: 9.411764705882353px;
@@ -2105,6 +2109,19 @@ body.menu-is-open {
 
 .no-js .s-home {
   background: #000000;
+}
+
+.specialties h4 {
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1;
+}
+
+@media only screen and (max-width: 600px) {
+    .specialties h4 {
+        font-size: 1.6rem !important;
+        margin-bottom: 1rem !important;
+    }
 }
 
 /* ------------------------------------------------------------------- 
