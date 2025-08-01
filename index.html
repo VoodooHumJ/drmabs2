@@ -639,8 +639,17 @@
                 </p>
             </div>
             <div class="col-six about-image">
-                <img src="images/IMG_20250509_095949.jpg" alt="Dr. Marco Antonio Bolaños Solares, especialista en traumatología deportiva, Cirugía ortopédica y artroscopia en La Paz, Bolivia" class="doctor-image">
-            </div>
+    <div class="slideshow-container">
+        <img src="images/IMG_20250509_095949.jpg" alt="Dr. Marco Antonio Bolaños Solares, especialista en traumatología deportiva, Cirugía ortopédica y artroscopia en La Paz, Bolivia" class="doctor-image fade active">
+        <img src="images/IMG_20250509_094808.jpg" alt="Dr. Marco Antonio Bolaños Solares, especialista en traumatología deportiva" class="doctor-image fade">
+        <img src="images/IMG_20250509_095250_1.jpg" alt="Dr. Marco Antonio Bolaños Solares, traumatólogo" class="doctor-image fade">
+        <img src="images/20170704022314.jpg" alt="Dr. Marco Antonio Bolaños Solares, traumatólogo" class="doctor-image fade">
+        <img src="images/drmabs.jpg" alt="Dr. Marco Antonio Bolaños Solares, traumatólogo" class="doctor-image fade">
+        <img src="images/20170704022314.jpg" alt="Dr. Marco Antonio Bolaños Solares, traumatólogo" class="doctor-image fade">
+        <img src="images/20170704022314.jpg" alt="Dr. Marco Antonio Bolaños Solares, traumatólogo" class="doctor-image fade">
+
+    </div>
+</div>
         </div> <!-- end about-desc -->
 
         <!-- end row -->
@@ -1084,7 +1093,51 @@ Brindo atención personalizada a cada paciente, ya sea que enfrentes una lesión
         document.addEventListener('DOMContentLoaded', () => {
             new ChatWidget();
         });
-        </script>
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Función para rotar imágenes
+        function rotateImages() {
+            const images = document.querySelectorAll('.doctor-image.fade');
+            let currentIndex = 0;
+            
+            // Encuentra el índice de la imagen activa actual
+            for (let i = 0; i < images.length; i++) {
+                if (images[i].classList.contains('active')) {
+                    currentIndex = i;
+                    break;
+                }
+            }
+            
+            // Calcula el índice de la siguiente imagen
+            const nextIndex = (currentIndex + 1) % images.length;
+            
+            // Muestra la siguiente imagen y comienza la transición
+            images[nextIndex].style.display = 'block';
+            
+            // Pequeña pausa para asegurar que el navegador procese el cambio de display
+            setTimeout(() => {
+                // Agrega la clase active a la siguiente imagen para iniciar el fade in
+                images[nextIndex].classList.add('active');
+                
+                // Espera a que termine la transición antes de ocultar la imagen anterior
+                setTimeout(() => {
+                    // Quita la clase active de la imagen actual para iniciar el fade out
+                    images[currentIndex].classList.remove('active');
+                    
+                    // Oculta la imagen anterior después de la transición
+                    setTimeout(() => {
+                        images[currentIndex].style.display = 'none';
+                    }, 5000);
+                }, 100);
+            }, 50);
+        }
+        
+        // Inicia la rotación cada 10 segundos (5s de transición + 5s de visualización)
+        setInterval(rotateImages, 10000);
+    });
+</script>
     
 
     
