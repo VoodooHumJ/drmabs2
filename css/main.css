@@ -3730,7 +3730,7 @@ celular
   height: auto;
   overflow: hidden;
   /* Establecer una altura y ancho fijos para el contenedor */
-  max-width: 400px; /* Ajusta este valor según el ancho deseado */
+  max-width: 600px; /* Ajusta este valor según el ancho deseado */
   aspect-ratio: 3/4; /* Mantiene una proporción consistente */
   margin: 0 auto;
 }
