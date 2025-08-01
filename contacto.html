@@ -140,7 +140,7 @@
                     <li><a href="servicios.html">Servicios especializados</a></li>
                     
                     <li><a href="noticias.html">Blog</a></li>
-                    <li><a href="contact.html">Contacto</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
                 </ul>
     
                 <p>Dr. Marco A. Bolaños Solares, especialista en traumatología y ortopedia deportiva. Atención integral en lesiones de rodilla, hombro y traumatología deportiva</p>
@@ -298,6 +298,25 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+
+    <div class="chat-dialog" id="chatDialog">
+        <div class="chat-header">
+            <span>Consulta con Dr. Bolaños</span>
+            <span class="close-chat" id="closeChat"><i class="fas fa-times"></i></span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-message">Bienvenido, ¿en qué podemos ayudarte?</div>
+        </div>
+        <div class="chat-input">
+            <textarea id="chatTextarea" placeholder="Escribe tu mensaje aquí..."></textarea>
+            <button id="sendMessage">Abrir chat</button>
+        </div>
+    </div>
+    
+    <!-- Botón flotante de WhatsApp -->    
+    <a href="javascript:void(0);" class="whatsapp-float" id="whatsappFloat">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
 </body>
 </html>
