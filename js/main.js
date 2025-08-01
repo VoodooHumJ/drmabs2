@@ -297,16 +297,18 @@
           return null;
         }
       
-        // Verificar si la cookie ya está aceptada
-        if (getCookie("cookiesAceptadas") === "true") {
+        // Verificar si la cookie ya está aceptada y si existe el banner
+        if (cookieBanner && getCookie("cookiesAceptadas") === "true") {
           cookieBanner.style.display = "none"; // Ocultar banner si ya se aceptó
         }
       
-        // Evento para aceptar cookies
-        acceptButton.addEventListener("click", function () {
-          document.cookie = "cookiesAceptadas=true; path=/; max-age=31536000"; // 1 año de duración
-          cookieBanner.style.display = "none"; // Ocultar banner
-        });
+        // Evento para aceptar cookies (solo si existe el botón)
+        if (acceptButton) {
+          acceptButton.addEventListener("click", function () {
+            document.cookie = "cookiesAceptadas=true; path=/; max-age=31536000"; // 1 año de duración
+            cookieBanner.style.display = "none"; // Ocultar banner
+          });
+        }
     });
       
       

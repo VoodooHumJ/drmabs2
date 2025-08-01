@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/theme-switcher.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    
     <!-- script
     ================================================== -->
@@ -98,6 +99,378 @@
     <style>
     html {
       scroll-behavior: smooth;
+    }
+    /* Chat Widget Styles */
+    .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #25D366;
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        cursor: pointer;
+    }
+
+    .whatsapp-float:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+    }
+
+    .whatsapp-float.hidden {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    .chat-dialog {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 360px;
+        height: 550px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transform: scale(0);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: 1001;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .chat-dialog.show {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .chat-header {
+        background: linear-gradient(135deg, #25D366, #128C7E);
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    .chat-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+    }
+
+    .doctor-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .doctor-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .doctor-name {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .doctor-status {
+        font-size: 12px;
+        opacity: 0.9;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+        background: #4ade80;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+
+    .close-chat {
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 50%;
+        transition: background 0.2s;
+        position: relative;
+        z-index: 1;
+    }
+
+    .close-chat:hover {
+        background: rgba(255,255,255,0.2);
+    }
+
+    .chat-body {
+        flex: 1;
+        padding: 20px;
+        padding-bottom: 70px; /* Espacio para el chat-input */
+        overflow-y: auto;
+        background: #f8fafc;
+        height: calc(100% - 80px); /* Altura total menos el header */
+    }
+
+    .chat-body::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .chat-body::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+
+    .chat-body::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 3px;
+    }
+
+    .chat-message {
+        background: white;
+        padding: 12px 16px;
+        border-radius: 18px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        max-width: 85%;
+        position: relative;
+        animation: slideIn 0.3s ease;
+    }
+
+    .chat-message.user {
+        background: #25D366;
+        color: white;
+        margin-left: auto;
+        border-bottom-right-radius: 5px;
+    }
+
+    .chat-message.doctor {
+        background: white;
+        border-bottom-left-radius: 5px;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .typing-indicator {
+        display: none;
+        background: white;
+        padding: 12px 16px;
+        border-radius: 18px;
+        margin-bottom: 15px;
+        max-width: 85%;
+        border-bottom-left-radius: 5px;
+    }
+
+    .typing-dots {
+        display: flex;
+        gap: 4px;
+    }
+
+    .typing-dots span {
+        width: 8px;
+        height: 8px;
+        background: #25D366;
+        border-radius: 50%;
+        animation: typing 1.4s infinite;
+    }
+
+    .typing-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .typing-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+        0%, 60%, 100% {
+            transform: translateY(0);
+            opacity: 0.5;
+        }
+        30% {
+            transform: translateY(-10px);
+            opacity: 1;
+        }
+    }
+
+    .chat-input {
+        padding: 8px 16px; /* Reducido el padding para disminuir el espacio */
+        background: white;
+        border-top: 1px solid #e2e8f0;
+        display: flex;
+        gap: 12px;
+        align-items: flex-end;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .chat-textarea {
+        flex: 1;
+        color: #1f1e1e !important;
+        background-color: #ffffff !important;
+        border: 2px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 10px 14px;
+        font-family: inherit;
+        font-size: 14px;
+        resize: none;
+        outline: none;
+        transition: all 0.2s;
+        max-height: 80px;
+        min-height: 40px;
+        -webkit-text-fill-color: #1d1d1d !important;
+    }
+    
+    /* Estilos específicos para el placeholder del chat */
+    .chat-textarea::placeholder {
+        color: #9ca3af !important;
+        opacity: 1;
+    }
+    
+    /* Asegurar que el texto sea visible cuando se escribe */
+    .chat-textarea:focus {
+        color: #222121 !important;
+        background-color: #ffffff !important;
+        border-color: #25D366;
+        box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+    }
+
+    .send-button {
+        background: #25D366;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .send-button:hover:not(:disabled) {
+        background: #128C7E;
+        transform: scale(1.05);
+    }
+
+    .send-button:disabled {
+        background: #94a3b8;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .quick-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+    .quick-option {
+        background: white;
+        border: 2px solid #25D366;
+        color: #25D366;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .quick-option:hover {
+        background: #25D366;
+        color: white;
+    }
+
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ef4444;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-5px);
+        }
+        60% {
+            transform: translateY(-3px);
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+        .chat-dialog {
+            width: calc(100vw - 20px);
+            height: calc(100vh - 40px);
+            bottom: 10px;
+            right: 10px;
+            border-radius: 15px;
+        }
+
+        .whatsapp-float {
+            bottom: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            font-size: 24px;
+        }
     }
     </style>
 </head>
@@ -156,16 +529,16 @@
     
                 <ul class="header-nav__social">
                     <li>
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i><span></span></a>
+                        <a href="https://www.facebook.com/p/%F0%9D%94%BB%F0%9D%95%A3-%F0%9D%95%84%F0%9D%94%B8-%F0%9D%94%B9%F0%9D%95%A0%F0%9D%95%9D%F0%9D%95%92%F0%9D%95%9F%CC%83%F0%9D%95%A0%F0%9D%95%A4-%F0%9D%95%8A%F0%9D%95%A0%F0%9D%95%9D%F0%9D%95%92%F0%9D%95%A3%F0%9D%95%96%F0%9D%95%A4-100063582370488/?locale=es_LA" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i><span></span></a>
                     </li>
                     <li>
-                        <a href="https://wa.me/+59162526819?text=Hola%20Dr.%20Bolaños%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta" target="_blank"><i class="fab fa-whatsapp" aria-hidden="true"></i><span></span></a>
+                        <a href="https://wa.me/59164296994?text=Hola%20Dr.%20Bolaños%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta" target="_blank"><i class="fab fa-whatsapp" aria-hidden="true"></i><span></span></a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i><span></span></a>
+                        <a href="https://www.instagram.com/dr.ma.bolanos.s/" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i><span></span></a>
                     </li>            
                     <li>
-                        <a href="https://maps.app.goo.gl/" target="_blank"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span></span></a>
+                        <a href="https://maps.app.goo.gl/TcTasAVdU7Xd2kdG7" target="_blank"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span></span></a>
                     </li>
                     
                 </ul>
@@ -213,7 +586,7 @@
                     <a href="about.html" class="btn btn--primary btn--large">
                         Acerca del Dr. Bolaños
                     </a>
-                    <a href="https://wa.me/59162526819" class="btn btn--large" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/59164296994?text=Hola%20Dr.%20Bolaños%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta" class="btn btn--large" target="_blank" rel="noopener noreferrer">
                         Reservar Cita
                     </a>
                 </div>
@@ -226,16 +599,16 @@
 
         <ul class="home-social">
             <li>
-                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i><span>Facebook</span></a>
+                <a href="https://www.facebook.com/p/%F0%9D%94%BB%F0%9D%95%A3-%F0%9D%95%84%F0%9D%94%B8-%F0%9D%94%B9%F0%9D%95%A0%F0%9D%95%9D%F0%9D%95%92%F0%9D%95%9F%CC%83%F0%9D%95%A0%F0%9D%95%A4-%F0%9D%95%8A%F0%9D%95%A0%F0%9D%95%9D%F0%9D%95%92%F0%9D%95%A3%F0%9D%95%96%F0%9D%95%A4-100063582370488/?locale=es_LA" target="_blank"><i class="fab fa-facebook-f" aria-hidden="true"></i><span>Facebook</span></a>
             </li>
             <li>
-                <a href="https://wa.me/59162526819?text=Hola%20Dr.%20Bolaños%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta" target="_blank"><i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span></a>
+                <a href="https://wa.me/59164296994?text=Hola%20Dr.%20Bolaños,%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta" target="_blank"><i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span></a>
             </li>
             <li>
-                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
+                <a href="https://www.instagram.com/dr.ma.bolanos.s/"" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i><span>Instagram</span></a>
             </li>            
             <li>
-                <a href="https://maps.app.goo.gl/" target="_blank"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Ubicación</span></a>
+                <a href="https://maps.app.goo.gl/TcTasAVdU7Xd2kdG7" target="_blank"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Ubicación</span></a>
             </li>
             
         </ul> <!-- end home-social -->
@@ -425,7 +798,66 @@ Brindo atención personalizada a cada paciente, ya sea que enfrentes una lesión
         </div>
     </footer>
 
-   
+    <div class="chat-dialog" id="chatDialog">
+        <div class="chat-header">
+            <div class="doctor-info">
+                <div class="doctor-avatar">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <div>
+                    <div class="doctor-name">Dr. Bolaños</div>
+                    <div class="doctor-status">
+                        <span class="status-dot"></span>
+                        En línea
+                    </div>
+                </div>
+            </div>
+            <span class="close-chat" id="closeChat">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        
+        <div class="chat-body" id="chatBody">
+            <div class="chat-message doctor">
+                ¡Hola! Soy el Dr. Bolaños 👨‍⚕️
+                <br><br>
+                Estoy aquí para ayudarte con tus consultas médicas. ¿En qué puedo asistirte hoy?
+            </div>
+            
+            <div class="quick-options">
+                <div class="quick-option" data-message="Quiero agendar una cita">📅 Agendar cita</div>
+                <div class="quick-option" data-message="Tengo una consulta médica">🩺 Consulta médica</div>
+                <div class="quick-option" data-message="Necesito información sobre horarios">⏰ Horarios</div>
+                <div class="quick-option" data-message="¿Cuál es la ubicación del consultorio?">📍 Ubicación</div>
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input">
+            <textarea 
+                id="chatTextarea" 
+                class="chat-textarea"
+                placeholder="Escribe tu mensaje aquí..."
+                rows="1"
+            ></textarea>
+            <button id="sendMessage" class="send-button">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+<!-- Botón flotante de WhatsApp -->
+    <a href="javascript:void(0);" class="whatsapp-float" id="whatsappFloat">
+        <i class="fab fa-whatsapp"></i>
+        <span class="notification-badge" id="notificationBadge">1</span>
+    </a>
 
     
 
@@ -442,27 +874,220 @@ Brindo atención personalizada a cada paciente, ya sea que enfrentes una lesión
     <script src="js/main.js"></script>
     <script src="js/spine-slider.js"></script>
     <script src="js/theme-switcher.js"></script>
+    <script>
+        class ChatWidget {
+            constructor() {
+                this.chatDialog = document.getElementById('chatDialog');
+                this.whatsappFloat = document.getElementById('whatsappFloat');
+                this.closeChat = document.getElementById('closeChat');
+                this.sendMessage = document.getElementById('sendMessage');
+                this.chatTextarea = document.getElementById('chatTextarea');
+                this.chatBody = document.getElementById('chatBody');
+                this.typingIndicator = document.getElementById('typingIndicator');
+                this.notificationBadge = document.getElementById('notificationBadge');
+                
+                this.isOpen = false;
+                this.messageCount = 0;
+                
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.setupTextareaResize();
+                this.setupQuickOptions();
+                this.showWelcomeNotification();
+            }
+
+            bindEvents() {
+                // Abrir/cerrar chat
+                this.whatsappFloat.addEventListener('click', () => this.toggleChat());
+                this.closeChat.addEventListener('click', () => this.closeDialog());
+                
+                // Enviar mensaje
+                this.sendMessage.addEventListener('click', () => this.handleSendMessage());
+                this.chatTextarea.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.handleSendMessage();
+                    }
+                });
+
+                // Cerrar con ESC
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.isOpen) {
+                        this.closeDialog();
+                    }
+                });
+
+                // Input en tiempo real
+                this.chatTextarea.addEventListener('input', () => {
+                    this.updateSendButton();
+                });
+            }
+
+            setupTextareaResize() {
+                this.chatTextarea.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+                });
+            }
+
+            setupQuickOptions() {
+                const quickOptions = document.querySelectorAll('.quick-option');
+                quickOptions.forEach(option => {
+                    option.addEventListener('click', () => {
+                        const message = option.dataset.message;
+                        
+                        // Redirigir a WhatsApp para opciones específicas
+                        if (message === "Quiero agendar una cita") {
+                            window.open('https://wa.me/59164296994?text=Quiero%20agendar%20una%20cita%20con%20el%20dr.%20Marco%20A.%20Bolaños%20S.', '_blank');
+                            return;
+                        } else if (message === "Tengo una consulta médica") {
+                            window.open('https://wa.me/59164296994?text=Tengo%20una%20consulta%20médica%20para%20el%20dr.%20Marco%20A.%20Bolaños%20S.', '_blank');
+                            return;
+                        }
+                        
+                        // Para otras opciones, continuar con el comportamiento normal
+                        this.chatTextarea.value = message;
+                        this.updateSendButton();
+                        this.handleSendMessage();
+                    });
+                });
+            }
+
+            showWelcomeNotification() {
+                setTimeout(() => {
+                    this.notificationBadge.style.display = 'flex';
+                }, 2000);
+            }
+
+            toggleChat() {
+                if (this.isOpen) {
+                    this.closeDialog();
+                } else {
+                    this.openDialog();
+                }
+            }
+
+            openDialog() {
+                this.chatDialog.classList.add('show');
+                this.whatsappFloat.classList.add('hidden');
+                this.isOpen = true;
+                this.notificationBadge.style.display = 'none';
+                
+                // Focus en el textarea
+                setTimeout(() => {
+                    this.chatTextarea.focus();
+                }, 300);
+            }
+
+            closeDialog() {
+                this.chatDialog.classList.remove('show');
+                this.whatsappFloat.classList.remove('hidden');
+                this.isOpen = false;
+            }
+
+            handleSendMessage() {
+                const message = this.chatTextarea.value.trim();
+                if (!message) return;
+
+                this.addUserMessage(message);
+                this.chatTextarea.value = '';
+                this.updateSendButton();
+                this.chatTextarea.style.height = 'auto';
+                
+                // Simular respuesta del doctor
+                this.simulateResponse(message);
+            }
+
+            addUserMessage(message) {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'chat-message user';
+                messageElement.textContent = message;
+                
+                // Insertar antes del indicador de escritura
+                this.chatBody.insertBefore(messageElement, this.typingIndicator);
+                this.scrollToBottom();
+            }
+
+            addDoctorMessage(message) {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'chat-message doctor';
+                messageElement.innerHTML = message;
+                
+                this.chatBody.insertBefore(messageElement, this.typingIndicator);
+                this.scrollToBottom();
+            }
+
+            simulateResponse(userMessage) {
+                this.showTyping();
+                
+                // Respuestas automáticas basadas en el mensaje
+                let response = this.generateResponse(userMessage);
+                
+                setTimeout(() => {
+                    this.hideTyping();
+                    this.addDoctorMessage(response);
+                }, 1500 + Math.random() * 1500);
+            }
+
+            generateResponse(message) {
+                const responses = {
+                    'cita': 'Perfecto! Para agendar una cita, por favor indícame:<br>• Fecha preferida<br>• Horario disponible<br>• Tipo de consulta<br><br>¿Tienes alguna preferencia?',
+                    'consulta': 'Claro, estaré encantado de ayudarte con tu consulta médica. Por favor, compárteme los detalles de tu situación y síntomas. 🩺',
+                    'horario': 'Nuestros horarios de atención son:<br><br>📅 <strong>Lunes a Viernes:</strong> 8:00 AM - 6:00 PM<br>📅 <strong>Sábados:</strong> 9:00 AM - 2:00 PM<br>📅 <strong>Domingos:</strong> Cerrado<br><br>¿Te gustaría agendar en algún horario específico?',
+                    'ubicación': '📍 Nos encontramos en:<br><br><strong>Consultorio Dr.Marco A.Bolaños S.</strong><br>Sopocachi, Av. 6 de Agosto esquina Cordero<br>Edificio Mercurio piso 6<br>La Paz, Bolivia<br><br><a href="https://maps.app.goo.gl/TcTasAVdU7Xd2kdG7" target="_blank">Ver en Google Maps</a>'
+                };
+
+                const lowerMessage = message.toLowerCase();
+                
+                for (let key in responses) {
+                    if (lowerMessage.includes(key) || lowerMessage.includes(key.replace('ó', 'o'))) {
+                        return responses[key];
+                    }
+                }
+
+                // Respuesta por defecto
+                const defaultResponses = [
+                    'Gracias por tu mensaje. ¿Podrías darme más detalles para ayudarte mejor? 😊',
+                    'Entiendo tu consulta. Te sugiero que agendemos una cita para una evaluación más detallada. ¿Te parece bien?',
+                    'Perfecto. Para brindarte la mejor atención, ¿podrías contarme un poco más sobre tu situación?',
+                    'Gracias por contactarme. Estoy aquí para ayudarte con todas tus consultas médicas. ¿En qué más puedo asistirte?'
+                ];
+
+                return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+            }
+
+            showTyping() {
+                this.typingIndicator.style.display = 'block';
+                this.scrollToBottom();
+            }
+
+            hideTyping() {
+                this.typingIndicator.style.display = 'none';
+            }
+
+            updateSendButton() {
+                const hasText = this.chatTextarea.value.trim().length > 0;
+                this.sendMessage.disabled = !hasText;
+            }
+
+            scrollToBottom() {
+                setTimeout(() => {
+                    this.chatBody.scrollTop = this.chatBody.scrollHeight;
+                }, 100);
+            }
+        }
+
+        // Inicializar el chat cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            new ChatWidget();
+        });
+        </script>
     
 
-    <!-- Cuadro de diálogo flotante -->
-    <div class="chat-dialog" id="chatDialog">
-        <div class="chat-header">
-            <span>Consulta con Dr. Bolaños</span>
-            <span class="close-chat" id="closeChat"><i class="fas fa-times"></i></span>
-        </div>
-        <div class="chat-body" id="chatBody">
-            <div class="chat-message">Bienvenido, ¿en qué podemos ayudarte?</div>
-        </div>
-        <div class="chat-input">
-            <textarea id="chatTextarea" placeholder="Escribe tu mensaje aquí..."></textarea>
-            <button id="sendMessage">Abrir chat</button>
-        </div>
-    </div>
     
-    <!-- Botón flotante de WhatsApp -->    
-    <a href="javascript:void(0);" class="whatsapp-float" id="whatsappFloat">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
 </body>
 </html>

@@ -32,7 +32,7 @@ function initChat() {
         
         // Abrir WhatsApp al hacer clic en el botón de enviar
         sendMessage.onclick = function() {
-            window.open('https://wa.me/59162526819?text=Hola%20Dr.%20Bolaños%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta', '_blank');
+            window.open('https://wa.me/59164296994?text=Hola%20Dr.%20Bolaños%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta', '_blank');
             return false;
         };
     } else {
